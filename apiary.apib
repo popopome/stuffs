@@ -87,31 +87,31 @@ PUT /v0/folders/{folderId}
 
 - The below is a list of side effects that will occur depending on the updated status when a request is sent to this API.
 >Case 1  
->1. A request to remove the owner is received.
->2. Owner of the folder is to be removed.
+>1. A request to remove the owner is received.  
+>2. Owner of the folder is to be removed.  
 >3. If the additional status provided is "leave",  
         - Sharing ends.  
         - The photos are left undeleted on each shared users folders  
-    >4. If the additional status is "unshared"
-        - Sharing ends.
-        - All the photos except of which the folder owner owns get deleted from the folder
+    >4. If the additional status is "unshared"  
+        - Sharing ends.  
+        - All the photos except of which the folder owner owns get deleted from the folder  
         - The folder is removed from other share user of the folder during the next syncing phase.  
     
-    >Case 2
-    >1. There is a share user list on this folder
-    >2. A request to remove a share user from the folder is received
-    >3. The share user is to be removed from the share list
-    >4. If the additional status provided is "leave"  
-        - The ownership of the photos the user owns is transferred to the owner of the folder
-        - If the additional status is "unshared"
-        - The photos the user owns get deleted from the other users of the folder during the next syncing phase
-        - Notifications are sent to other share users of the folder
+    >Case 2  
+    >1. There is a share user list on this folder  
+    >2. A request to remove a share user from the folder is received  
+    >3. The share user is to be removed from the share list  
+    >4. If the additional status provided is "leave",  
+        - The ownership of the photos the user owns is transferred to the owner of the folder  
+        - If the additional status is "unshared"  
+        - The photos the user owns get deleted from the other users of the folder during the next syncing phase  
+        - Notifications are sent to other share users of the folder  
         
-    >Case 3
-    >1. A request to add new user to the share list of this folder is received.
-    >2. The new user is added to the share list of this folder.
-    >3. Notifications are sent to other share users of the folder
-    >4. An invitation email is sent.
+    >Case 3  
+    >1. A request to add new user to the share list of this folder is received.  
+    >2. The new user is added to the share list of this folder.  
+    >3. Notifications are sent to other share users of the folder  
+    >4. An invitation email is sent.  
     
 
 PUT /v0/folders/{folderId}/users
