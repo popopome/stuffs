@@ -189,7 +189,6 @@ GET /v0/folders/{folderId}/logs?sid=ABCDEFG&t=1348172839&n=3
          [\“User B\”, \“add\”, \“class of 2013\”, \“13457893467\”]]"
 }
 
-
 --
 Photo
 --
@@ -248,7 +247,7 @@ DELETE /v0/folders/{folderId}/photos/{photoId}
 
 <h1>photo_url</h1>
 
-Get public url to download photo.
+Get public url to download photos/thumbnails.
 
 GET /v0/folders/{folderId}/photos/{photoId}{?sid=ABCDEFG}
 < 200
@@ -300,11 +299,14 @@ Events are sorted by timestamp in descending order (most recent event is in fron
 GET /v0/users/events{?sid=ABCDEFG}
 < 200
 < Content-Type: application/json
-{ "code":0, "events": [
-     { "id": "ABCDEFG", "type": 0, "data": {fid: "--folder id--", owner: "--owner id--"}, 
-        "timestamp":1379469940381 },
-     { "id": "HIJKLMN", "type": 1, "data": {pid: ["photoid1", "photoid2"], name: "folder name"},
-        "timestamp":1379469908710 }
+{ "code":0, 
+  "events": [
+     { "id": "ABCDEFG", "type": 0, 
+       "data": {"fid": "--folder id--", "owner": "--owner id--"}, 
+       "timestamp": 1379469940381 },
+     { "id": "HIJKLMN", "type": 1, 
+       "data": {"pid": ["photoid1", "photoid2"], "name": "folder name"},
+       "timestamp": 1379469908710 }
   ]}
 
 <h1>user_event_resolved</h1>
@@ -317,7 +319,7 @@ POST /v0/users/events/{eventId}
 { "d": "accept" }
 < 200
 < Content-Type: application/json
-{ code:0, description: "OK" } 
+{ "code":0, "description": "OK" } 
 
 --
 Slideshow
