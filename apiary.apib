@@ -13,7 +13,7 @@ The following is a section of resources related to the shared folder
 
 --
 
-<h1>folder_create</h1>
+<h1>Create folder</h1>
 
 - Receives session key, title, description, filters, frames, camera_color  
        - owner_id is set by referring to the session_key sent
@@ -35,7 +35,7 @@ POST /v0/folders
 }
 
 
-<h1>folder_Update</h1>
+<h1>Update folder</h1>
 
 - Update folder settings  
 - Takes a parameter that can either be r or m
@@ -78,7 +78,7 @@ PUT /v0/folders/{folderId}
 } 
 
 
-<h1>folder_update_share_user</h1>
+<h1>Update share user</h1>
 
 - Update user status on this folder
 - Takes user data, optionally, including the email and the permission of the involved user on this folder
@@ -92,12 +92,12 @@ PUT /v0/folders/{folderId}
 >1. A request to remove the owner is received.  
 >2. Owner of the folder is to be removed.  
 >3. If the additional status provided is "leave",  
-        >>a. Sharing ends.  
-        b. The photos are left undeleted on each shared users folders  
+>>a. Sharing ends.  
+>>b. The photos are left undeleted on each shared users folders  
     >4. If the additional status is "unshared"  
-        >>a. Sharing ends.  
-        b. All the photos except of which the folder owner owns get deleted from the folder  
-        c. The folder is removed from other share user of the folder during the next syncing phase.  
+    >>a. Sharing ends.  
+    >>b. All the photos except of which the folder owner owns get deleted from the folder  
+    >>c. The folder is removed from other share user of the folder during the next syncing phase.  
     
     >Case 2  
     >1. There is a share user list on this folder  
@@ -105,9 +105,9 @@ PUT /v0/folders/{folderId}
     >3. The share user is to be removed from the share list  
     >4. If the additional status provided is "leave",  
         >>a. The ownership of the photos the user owns is transferred to the owner of the folder  
-        b. If the additional status is "unshared"  
-        c. The photos the user owns get deleted from the other users of the folder during the next syncing phase  
-        d. Notifications are sent to other share users of the folder  
+        >>b. If the additional status is "unshared"  
+        >>c. The photos the user owns get deleted from the other users of the folder during the next syncing phase  
+        >>d. Notifications are sent to other share users of the folder  
         
     >Case 3  
     >1. A request to add new user to the share list of this folder is received.  
@@ -135,7 +135,7 @@ PUT /v0/folders/{folderId}/users
 } 
 
 
-<h1>folder_get</h1>
+<h1>Get Folder</h1>
 
 - Get the data of the folder which is associated with the given folder_id.
 - Optionally, takes a keylist, to retrieve specific key values.
@@ -166,7 +166,7 @@ GET /v0/folders/{folderId}?sid=ABCDE
 }
 
 
-<h1>folder_get_log</h1>
+<h1>Get log</h1>
 
 - Get a list of logs that actions made by users on this folder
     - The data contents can be used to generate notifications.
@@ -191,7 +191,7 @@ GET /v0/folders/{folderId}/logs?sid=ABCDEFG&t=1348172839&n=3
 Photo
 --
 
-<h1>photo_create</h1>
+<h1>Create photo</h1>
 
 Create a photo, upload photo & thumbnail binary data.
 
@@ -226,7 +226,7 @@ POST /v0/folders/{folderId}/photos
 { "code":0, "description": "OK", "photoId": "ABCDEFG" }
 
 
-<h1>photo_delete</h1>
+<h1>Delete photo</h1>
 
 Delete photo from folder.
 
@@ -243,7 +243,7 @@ DELETE /v0/folders/{folderId}/photos/{photoId}
 { "code":0, "description": "OK" }
 
 
-<h1>photo_url</h1>
+<h1>Get photo url</h1>
 
 Get public url to download photos/thumbnails.
 
@@ -258,7 +258,7 @@ GET /v0/folders/{folderId}/photos/{photoId}{?sid=ABCDEFG}
 User
 --
 
-<h1>user_get_folder_list</h1>
+<h1>Get user's folder list</h1>
 
 Get list of folders :
 
@@ -272,7 +272,7 @@ GET /v0/users/folders{?sid=ABCDEFG}
     "user_folders": ["id1", "id2", "id3"], 
     "shared_folders": ["id1", "id2", "id3"] }
 
-<h1>user_event</h1>
+<h1>Get user events</h1>
 
 Get list of user events.
 
@@ -307,7 +307,7 @@ GET /v0/users/events{?sid=ABCDEFG}
        "timestamp": 1379469908710 }
   ]}
 
-<h1>user_event_resolved</h1>
+<h1>Resolve user event</h1>
 
 Resolve an user event.
 
@@ -323,7 +323,7 @@ POST /v0/users/events/{eventId}
 Slideshow
 --
 
-<h1>slideshow_get_url</h1>
+<h1>Get slideshow url</h1>
 
 Get a new public link for playing a slideshow.
 
