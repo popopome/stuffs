@@ -93,11 +93,12 @@ PUT /v0/folders/{folderId}
 >2. Owner of the folder is to be removed.  
 >3. If the additional status provided is "leave",  
 >>a. Sharing ends.  
->>b. The photos are left undeleted on each shared users folders  
->4. If the additional status is "unshared"  
-    >>a. Sharing ends.  
-    >>b. All the photos except of which the folder owner owns get deleted from the folder  
-    >>c. The folder is removed from other share user of the folder during the next syncing phase.  
+>>b. The photos are left undeleted on each shared users folders
+
+    >4. If the additional status is "unshared"  
+        >>a. Sharing ends.  
+        >>b. All the photos except of which the folder owner owns get deleted from the folder  
+        >>c. The folder is removed from other share user of the folder during the next syncing phase.  
     
     >Case 2  
     >1. There is a share user list on this folder  
