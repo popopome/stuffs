@@ -144,10 +144,9 @@ PUT /v0/folders/{folderId}/users
 >> /v0/folders/{folderId}?sid=ABCDE&k=photo_list,owner_id  
 
     > then the output json will contain only the values of the matching keys
-    >> { "code": 0,  
-        >>"photo_list": "[\"photo_id1\", \"photo_id2\"]",
-        >>"owner_id": "user id", 
-        >>}
+    { "code": 0,  
+        "photo_list": ["photo_id1", "photo_id2"],
+        "owner_id": "user id" }
 
 GET /v0/folders/{folderId}?sid=ABCDE
 < 200
