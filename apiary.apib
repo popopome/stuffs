@@ -64,7 +64,7 @@ POST /v0/folders/{folderId}
 Photo
 --
 
-photo_create
+<h1>photo_create</h1>
 
 Create a photo, upload photo & thumbnail binary data.
 
@@ -99,7 +99,7 @@ POST /v0/folders/{folderId}/photos
 { "code":0, "description": "OK", "photoId": "ABCDEFG" }
 
 
-photo_delete
+<h1>photo_delete</h1>
 
 Delete photo from folder.
 
@@ -113,18 +113,91 @@ DELETE /v0/folders/{folderId}/photos/{photoId}
 > "sid": "ABCDEFG"
 < 200
 < Content-Type: application/json
-{ "code":0, "description": “OK” }
+{ "code":0, "description": "OK" }
 
 
-photo_url
+<h1>photo_url</h1>
 
-Get public url to download photo
+Get public url to download photo.
 
 GET /v0/folders/{folderId}/photos/{photoId}{?sid=ABCDEFG}
 < 200
 < Content-Type: application/json
 { "code":0, 
-    "photoUrl": “http://some-url-to-download-photo”, 
-    "thumbUrl" : “http://some-url-to-download-thumbnail” } 
+    "photoUrl": "http://some-url-to-download-photo", 
+    "thumbUrl" : "http://some-url-to-download-thumbnail" } 
+    
+--
+User
+--
 
+<h1>user_get_folder_list</h1>
 
+Get list of folders :
+
+- folders that are owned by user
+- folders that are shared to user
+
+GET /v0/users/folders{?sid=ABCDEFG}
+< 200
+< Content-Type: application/json
+{ "code":0, 
+    "user_folders": ["id1", "id2", "id3"], 
+    "shared_folders": ["id1", "id2", "id3"] }
+
+<h1>user_event</h1>
+
+Get list of user events.
+
+Events are sorted by timestamp in descending order (most recent event is in front of list).
+
+<u>Event Type</u>
+
+0 = Folder Invitation 
+
+- sent to users who have been invited to join a folder. 
+- event data => { fid : <folderId>, owner : <owner name> }
+- client action => send user_event_resolved : "accept" or "reject"
+
+1 = Folder Destroy
+
+- sent to all shared members when owner leaves a folder
+- event data => { pid : [id1, id2, id3 ...  ], name : <folder name> }
+- client action => 
+  a) If there are photos in pid, create a new local folder containing all photos in pid
+  b) send user_event_resolved : "OK"
+
+GET /v0/users/events{?sid=ABCDEFG}
+< 200
+< Content-Type: application/json
+{ "code":0, "events": [
+     { "id": "ABCDEFG", "type": 0, "data": {fid: "--folder id--", owner: "--owner id--"}, 
+        "timestamp":1379469940381 },
+     { "id": "HIJKLMN", "type": 1, "data": {pid: ["photoid1", "photoid2"], name: "folder name"},
+        "timestamp":1379469908710 }
+  ]}
+
+<h1>user_event_resolved</h1>
+
+Resolve an user event.
+
+POST /v0/users/events/{eventId}
+> "sid": "ABCDEFG"
+> Content-Type: application/json
+{ "d": "accept" }
+< 200
+< Content-Type: application/json
+{ code:0, description: "OK" } 
+
+--
+Slideshow
+--
+
+<h1>slideshow_get_url</h1>
+
+Get a new public link for playing a slideshow.
+
+GET /v0/folders/{folderId}/slideshows{?sid=ABCDEF}
+< 200
+< Content-Type: application/json
+{ "code":0, "url": "http://some-url-to-play-slideshow" } 
