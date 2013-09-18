@@ -105,9 +105,10 @@ PUT /v0/folders/{folderId}
     >1. There is a share user list on this folder  
     >2. A request to remove a share user from the folder is received  
     >3. The share user is to be removed from the share list  
-    >4. If the additional status provided is "leave",  
+    >4. If an additional status provided
+    >>and if it is "leave",  
     >>a. The ownership of the photos the user owns is transferred to the owner of the folder  
-    >>b. If the additional status is "unshared"  
+    >>and if is "unshared"  
     >>c. The photos the user owns get deleted from the other users of the folder during the next syncing phase  
     >>d. Notifications are sent to other share users of the folder  
         
