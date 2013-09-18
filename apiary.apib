@@ -62,8 +62,8 @@ If the current filters of a folder contains
 PUT /v0/folders/{folderId}
 > "sid": "ABCDEFG"
 > Content-Type: application/json
-{ "r": "[[\"title\", \"new title\"], [\"desc\", \"description\"]]",
-  "m": "[[\"filters", \"add", \"filter1\"], [\"filters\", \"remove\", \"filter2\"]]"
+{ "r": [["title", "new title"], ["desc", "description"]],
+  "m": [["filters", "add", "filter1"], ["filters", "remove", "filter2"]]
 }
 < 200
 < Content-Type: application/json
@@ -71,8 +71,8 @@ PUT /v0/folders/{folderId}
    "folder_id": "folder_id",
    "title": "title",
    "desc": "desc",
-   "filters": "[filter_name1, filter_name2,...]",
-   "frames": "[frame_name1, frame_name2,...]",
+   "filters": ["filter_name1", "filter_name2"],
+   "frames": ["frame_name1", "frame_name2"],
    "camera_color": "camera_color"
 } 
 
@@ -118,19 +118,19 @@ PUT /v0/folders/{folderId}
 PUT /v0/folders/{folderId}/users
 > "sid": "ABCDEFG"
 > Content-Type: application/json
-{ "a": "[[\"email1@ca.com\", \"remove\", \"leave\"],
-     [\"email2@ca.com\", \"add\"],
-     [\"email3@ca.com\", \"update\", \"accept\"]], 
- [\"email4@ca.com\", \"remove\", \"unshared\"]]"
+{ "a": [["email1@ca.com", "remove", "leave"],
+        ["email2@ca.com", "add"],
+        ["email3@ca.com", "update", "accept"], 
+        ["email4@ca.com", "remove", "unshared"]]
 }
 < 200
 < Content-Type: application/json
 { "code": 0,
    "folder_id": "folder_id",
-   "users": "[[\"email1@ca.com\", \"removed\"],
-             [\"email2@ca.com\", \"pending\"],
-             [\"email3@ca.com\", \"accept\"]], 
-             [\"email4@ca.com\", \"removed\"]]"
+   "users": [["email1@ca.com", "removed"],
+             ["email2@ca.com", "pending"],
+             ["email3@ca.com", "accept"], 
+             ["email4@ca.com", "removed"]]
 } 
 
 
@@ -156,15 +156,15 @@ GET /v0/folders/{folderId}?sid=ABCDE
    "folder_id": folder_id,
    "creation_date": "date",
    "owner_id": "user id",
-   "share_list": "[{\"user_id\": \"user id\", \"status\": \"pending\"}]",
-   "photo_list": "[\"photo_id1\", \"photo_id2\"]",
+   "share_list": [{"user_id": "user id", "status": "pending"}],
+   "photo_list": ["photo_id1", "photo_id2"],
    "check_sum": "check_sum",
    "title": "title",
-   "description: "description",
-   "filters": "[\"filter_name1\", \"filter_name2\"]",
-   "frames": "[\"frame_name1\", \"frame_name2\"]",
+   "description": "description",
+   "filters": ["filter_name1", "filter_name2"],
+   "frames": ["frame_name1", "frame_name2"],
    "music": "TBD",
-   "slideshow_list": "[\"photo_id1\", \"photo_id2\"]",
+   "slideshow_list": ["photo_id1", "photo_id2"],
 }
 
 
@@ -184,9 +184,9 @@ GET /v0/folders/{folderId}/logs?sid=ABCDEFG&t=1348172839&n=3
 < 200
 < Content-Type: application/json
 { "code": 0,
-   "msg": "[[\"name\", \"action\", \"folder name\", \"time string\"],
-          [\"User A\", \"add\", \"class of 2013\", \"13457893475\"],
-         [\"User B\", \"add\", \"class of 2013\", \"13457893467\"]]"
+   "msg": [["name", "action", "folder name", "time string"],
+           ["User A", "add", "class of 2013", "13457893475"],
+           ["User B", "add", "class of 2013", "13457893467"]]
 }
 
 --
