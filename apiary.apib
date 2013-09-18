@@ -47,17 +47,16 @@ POST /v0/folders
 - Returns the request status code and updated values.
     - If only photo_list was to update then the returned json output will have the newly updated value of the photo_list only.  
     
->e.g.  
-If the current filters of a folder contains  
-    >> filters: ["filter1", "filter2", "filter3"]  
+>e.g. If the current filters of a folder contains  
+>> filters: ["filter1", "filter2", "filter3"]  
     
-        >and a folder_update request with the following parameter is made.  
-        >>m: [["filters", "remove", "filter2"] ["filters", "add", "filter4"]]  
+>and a folder_update request with the following parameter is made.  
+>>m: [["filters", "remove", "filter2"] ["filters", "add", "filter4"]]  
     
-        >then the result of the update will be
-        >>filters: ["filter1", "filter3", "filter4"]  
+>then the result of the update will be
+>>filters: ["filter1", "filter3", "filter4"]  
         
-        >Notice that "filter2" is removed and "filter4" is added to filters.
+>Notice that "filter2" is removed and "filter4" is added to filters.
       
 PUT /v0/folders/{folderId}
 > "sid": "ABCDEFG"
