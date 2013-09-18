@@ -247,16 +247,30 @@ DELETE /v0/folders/{folderId}/photos/{photoId}
 { "code":0, "description": "OK" }
 
 
-<h1>Get photo url</h1>
+<h1>Get photo data</h1>
 
-Get public url to download photos/thumbnails.
+Get data relating to a single photo. (URL, size, thumbnail info)
 
 GET /v0/folders/{folderId}/photos/{photoId}{?sid=ABCDEFG}
 < 200
 < Content-Type: application/json
 { "code":0, 
     "photoUrl": "http://some-url-to-download-photo", 
-    "thumbUrl" : "http://some-url-to-download-thumbnail" } 
+    "photoWidth": 1280,
+    "photoHeight": 960,
+    "thumbUrl" : "http://some-url-to-download-thumbnail",
+    "thumbWidth": 400,
+    "thumbHeight": 400} 
+    
+<h1>Get photo list</h1>
+
+Get a list of photos from a folder.
+
+GET /v0/folders/{folderId}/photos{?sid=ABCDEFG}
+< 200
+< Content-Type: application/json
+{ "code":0, 
+    "photo_list": ["photoid1", "photoid2", "photoid3"] } 
     
 --
 User
