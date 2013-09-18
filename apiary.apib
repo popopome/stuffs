@@ -1,0 +1,61 @@
+HOST: http://api.cameraace.net/
+
+--- CameraAce API ---
+
+---
+CameraAce API for supporting slideshow and group share.
+---
+
+--
+Folder
+The following is a section of resources related to the shared folder
+--
+
+Create a folder 
+POST /v0/folder
+> Content-Type: application/json
+{ "name": "abcd",
+  "desc": "abcd photo"
+}
+< 200
+< Content-Type: application/json
+{ "code": 0,
+  "id": "sample-folder-id1"
+}
+
+Save new products in your shopping cart
+POST /shopping-cart
+> Content-Type: application/json
+{ "product":"1AB23ORM", "quantity": 2 }
+< 201
+< Content-Type: application/json
+{ "status": "created", "url": "/shopping-cart/2" }
+
+ERROR CASE
+POST /shopping-cart
+> Content-Type: application/xml
+< 200
+< Content-Type: application/json
+{"code": 1}
+
+FOLDER UPDATE
+GET /v0/folders/{folderId}
+> Content-Type: application/json
+< 200
+< Content-Type: application/json
+{}
+
+FOLDER meeeep
+POST /v0/folders/{folderId}
+> Content-Type: application/json
+< 200
+< Content-Type: application/json
+{}
+
+-- Payment Resources --
+
+This resource allows you to submit payment information to process your *shopping cart* items
+POST /payment
+{ "cc": "12345678900", "cvc": "123", "expiry": "0112" }
+< 200
+{ "receipt": "/payment/receipt/1" }
