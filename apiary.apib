@@ -60,10 +60,71 @@ POST /v0/folders/{folderId}
 < Content-Type: application/json
 {}
 
--- Payment Resources --
+--
+Photo
+--
 
-This resource allows you to submit payment information to process your *shopping cart* items
-POST /payment
-{ "cc": "12345678900", "cvc": "123", "expiry": "0112" }
+photo_create
+
+Create a photo, upload photo & thumbnail binary data.
+
+Input =>
+
+- mtype : mime-type
+- psize : photo-byte-array-size
+- tsize : thumbnail-byte-array-size
+- pw : photo width
+- ph : photo height
+- tw : thumb width
+- th : thumb height
+
+Side Effects => 
+
+- Create and associate a new PHOTO_RAW entry
+- Add Photo to Folder’s photo_list
+- Add this action to the Folder Log
+
+POST /v0/folders/{folderId}/photos
+> "sid": "ABCDEFG"
+> Content-Type: application/json 
+{ "mtype": "image/jpeg", 
+   "psize" : 123456, 
+   "tsize" : 12345, 
+   "pw" : 1280, 
+   "ph" : 960,  
+   "tw" : 400,  
+   "th" : 400  }
 < 200
-{ "receipt": "/payment/receipt/1" }
+< Content-Type: application/json
+{ "code":0, "description": "OK", "photoId": "ABCDEFG" }
+
+
+photo_delete
+
+Delete photo from folder.
+
+Side Effects => 
+
+- Remove the associated PHOTO_RAW entry
+- Remove Photo from Folder’s photo_list
+- Add this action to the Folder Log
+
+DELETE /v0/folders/{folderId}/photos/{photoId}
+> "sid": "ABCDEFG"
+< 200
+< Content-Type: application/json
+{ "code":0, "description": “OK” }
+
+
+photo_url
+
+Get public url to download photo
+
+GET /v0/folders/{folderId}/photos/{photoId}{?sid=ABCDEFG}
+< 200
+< Content-Type: application/json
+{ "code":0, 
+    "photoUrl": “http://some-url-to-download-photo”, 
+    "thumbUrl" : “http://some-url-to-download-thumbnail” } 
+
+
