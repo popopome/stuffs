@@ -256,9 +256,27 @@ GET /v0/folders/{folderId}/photos/{photoId}{?sid=ABCDEFG}
     "thumbWidth": 400,
     "thumbHeight": 400} 
     
+    
 <h1>Get photo list</h1>
 
-Get a list of photos from a folder.
+Get a list of photos from a folder.  
+Takes optional parameters, s and e, which stand for start and end index of photo items to get, respectably.
+
+- Starting index is inclusive, and ending index is exclusive.
+- If only s is specified then all the photos from the index s is returned.
+- If only e is specified then all the photos starting from the index 0 to the index, e - 1, is returned.
+- All photo_list in returned by default, if neither s nor e is specified.
+
+
+> e.g.  
+> If the photo_list of a folder contains
+>> photo_list: ["photoid1", "photoid2", "photoid3", "photoid4", "photoid5"]
+
+> If a GET request, /v0/folders/{folderId}/photos?sid=ABCDEFG&s=2&e=5 is made then the following is returned.  
+>> { "code": 0,
+>>   "photo_list": "[\"photoid3\", \"photoid4\", \"photoid5\"]"
+>> }
+
 
 GET /v0/folders/{folderId}/photos{?sid=ABCDEFG}
 < 200
