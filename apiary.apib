@@ -49,12 +49,12 @@ POST /v0/folders
 >> filters: ["filter1", "filter2", "filter3"]  
     
 >and a folder_update request with the following parameter is made.  
->>m: [["filters", "remove", "filter2"] ["filters", "add", "filter4"]]  
+>>r: "[[\"filter2\", \"filter3\", \"filter4\"]]"  
     
 >then the result of the update will be
->>filters: ["filter1", "filter3", "filter4"]  
+>>filters: ["filter2", "filter3", "filter4"]  
         
->Notice that "filter2" is removed and "filter4" is added to filters.
+>Notice that "filter1" is removed and "filter4" is added to filters.
       
 PUT /v0/folders/{folderId}
 > "sid": "ABCDEFG"
