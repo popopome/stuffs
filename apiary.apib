@@ -141,10 +141,10 @@ PUT /v0/folders/{folderId}/users
 - Otherwise, shows all keys for given folder id.
 > e.g.
 > If a query string, k, was provided,
->> /v0/folders/{folderId}?sid=ABCDE&k=photo_list,owner_id  
+>> /v0/folders/{folderId}?sid=ABCDE&k=share_list,owner_id  
 
     > then the output json will contain only the values of the matching keys
->>    { "code": 0,  "photo_list": ["photo_id1", "photo_id2"], "owner_id": "user id" }
+>>    { "code": 0,  "share_list": "[{\"user_id\": \"user id\", \"status\": \"pending\"}]", "owner_id": "user id" }
 
 GET /v0/folders/{folderId}?sid=ABCDE
 < 200
@@ -153,15 +153,14 @@ GET /v0/folders/{folderId}?sid=ABCDE
    "folder_id": "folder_id",
    "creation_date": "09/18/2013",
    "owner_id": "user id",
-   "share_list": [{"user_id": "user id", "status": "pending"}],
-   "photo_list": ["photo_id1", "photo_id2"],
+   "share_list": "[{\"user_id\": \"user id\", \"status\": \"pending\"}]",
    "check_sum": "check_sum",
    "title": "title",
    "description": "description",
-   "filters": ["filter_name1", "filter_name2"],
-   "frames": ["frame_name1", "frame_name2"],
+   "filters": "[\"filter_name1\", \"filter_name2\"]",
+   "frames": "[\"frame_name1\", \"frame_name2\"]",
    "music": "TBD",
-   "slideshow_list": ["photo_id1", "photo_id2"],
+   "slideshow_list": "[\"photo_id1\", \"photo_id2\"]",
 }
 
 
