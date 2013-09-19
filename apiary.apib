@@ -40,11 +40,7 @@ POST /v0/folders
 - Update folder settings  
 - Takes a parameter that can either be r or m
 - r, which is short for replace.
-    - replaces the matching key’s value  
-- m, short for merge.
-
-    - Either add or remove the given value form the the matching key’s value  
-    - Used to update values that have multiple values, e.g. lists such as photo_list, slideshow_list, filters, and frames  
+    - replaces the matching key’s value   
     
 - Returns the request status code and updated values.
     - If only photo_list was to update then the returned json output will have the newly updated value of the photo_list only.  
@@ -63,8 +59,7 @@ POST /v0/folders
 PUT /v0/folders/{folderId}
 > "sid": "ABCDEFG"
 > Content-Type: application/json
-{ "r": [["title", "new title"], ["desc", "description"]],
-  "m": [["filters", "add", "filter1"], ["filters", "remove", "filter2"]]
+{ "r": "[[\"title\", \"new title\"], [\"desc\", \"description\"]]"
 }
 < 200
 < Content-Type: application/json
