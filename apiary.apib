@@ -7,6 +7,37 @@ CameraAce API for supporting slideshow and group share.
 ---
 
 --
+Authentication
+
+- CameraAce service uses Google OAuth service to identify each users.
+- Session key is generated based on valid user information.
+- Every API call should be called with valid session key.
+- If the session key is not valid, API call returns error code.
+--
+
+--
+API Call/Response Skeleton
+
+- Each API is created for the specific purpose 
+- But most of them share similar call/response structure
+- Request
+    - Every GET requests should include valid session key as embedded form in URL
+      `http://cameraace.net/v0/folders/1234?sid=session_key_here`
+    - Every POST requests should include valid session key in `Headers`
+- Response
+    - JSON format is only supported
+    - The field `code` is mandatory.
+    
+```
+{
+    code: 0
+}
+```
+
+
+--
+
+--
 Folder
 
 The following is a section of resources related to the shared folder
@@ -16,7 +47,7 @@ The following is a section of resources related to the shared folder
 <h1>Create folder</h1>
 
 - Receives session key, title, description, filters, frames, camera_color  
-       - owner_id is set by referring to the session_key sent
+       - `owner_id` is set by referring to the `session_key` sent
 - Returns status code 0 upon a successful completion of the received request
 
 POST /v0/folders
